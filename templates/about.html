@@ -1,0 +1,36 @@
+{% include "header.html" %}
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url({{ url_for('static', filename='img/about-bg.jpg')}})">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>About Me</h1>
+            <span class="subheading">This is what i am.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p>
+          Hey everybody myself <b>Pradyu</b> from Chennai,India Creator of this Blog.
+        </p>
+        <p>
+          i'm a Computer Science Engineering Student studying in <a href="https://jeppiaarcollege.org/jeppiaar/">JEC</a> .I've created this Blog website as my initial project due to my interest in Web Development  using flask framework through python language
+        </p>
+        <p>Checkout my work <a href="https://obscure-badlands-87487.herokuapp.com/">newsletter</a></p>
+
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  {% include "footer.html" %}
