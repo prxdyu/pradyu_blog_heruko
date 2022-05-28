@@ -17,8 +17,10 @@
 
   <!-- Main Content -->
   <div class="container">
+    <p class="user" style="text-align:center;"><b>Hi {{current_user.name}} <b><image class="smiling-icon" src="https://img.icons8.com/windows/344/laugh.png"></p>
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
+
         {% for post in all_posts %}
         <div class="post-preview">
           <a href="{{ url_for('show_post', post_id=post.id) }}">
@@ -44,7 +46,7 @@
 
         <!-- New Post -->
         <div class="clearfix">
-            {% if current_user.id==1: %}
+            {% if current_user.id: %}
               <a class="btn btn-primary float-right" href="{{url_for('add_new_post')}}">Create New Post</a>
             {% endif %}
         </div>

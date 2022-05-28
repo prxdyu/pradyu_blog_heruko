@@ -19,6 +19,26 @@
   display:inline-block;
 }
 
+.user{
+  font-size: 25px;
+  color: #212529;
+  font-family: 'Lora', 'Times New Roman', 'serif';
+}
+
+.about{
+  line-height: 35px;
+}
+
+.jec{
+  text-decoration: none;
+  background-color: "grey"
+}
+.smiling-icon{
+  width: 30px;
+   height: 30px;
+   background-size: 100% 100%;
+}
+
 .commentBox {
     padding:10px;
     border-top:1px dotted #bbb;

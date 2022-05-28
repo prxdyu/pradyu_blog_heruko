@@ -1,3 +1,4 @@
+import flask_login
 from flask import Flask, render_template, redirect, url_for, flash, request
 from flask_bootstrap import Bootstrap
 from flask_ckeditor import CKEditor
@@ -178,6 +179,7 @@ def login():
 
 @app.route('/logout')
 def logout():
+    flask_login.logout_user()
     return redirect(url_for('get_all_posts'))
 
 
@@ -230,7 +232,6 @@ def admin_only(f):
 
 @app.route("/new-post",methods=['GET','POST'])
 @login_required
-@admin_only
 def add_new_post():
     form = CreatePostForm()
     if form.validate_on_submit():
