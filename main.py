@@ -65,7 +65,7 @@ class BlogPost(db.Model):
     #connection to the Users table
     author = relationship("User", back_populates="posts")
     #connection to the comments table
-    comments = relationship("Comments", back_populates="post")
+    comments = relationship("Comments", back_populates="post",cascade="delete")
 db.create_all()
 
 class Comments(db.Model):
@@ -278,7 +278,9 @@ def edit_post(post_id):
 @admin_only
 def delete_post(post_id):
     post_to_delete = BlogPost.query.get(post_id)
+    print(post_to_delete)
     db.session.delete(post_to_delete)
+    print("Deleted")
     db.session.commit()
     return redirect(url_for('get_all_posts'))
 
