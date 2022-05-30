@@ -172,7 +172,10 @@ def login():
             if user and check_password_hash(user.password, password):
                 login_user(user)
                 return redirect(url_for('get_all_posts'))
-
+            else:
+                flash("Email or password is incorrect")
+        else:
+            flash("Please enter valid credentials")
 
     return render_template("login.html",form=form)
 
@@ -252,7 +255,6 @@ def add_new_post():
 
 @app.route("/edit-post/<int:post_id>",methods=['GET','POST'])
 @login_required
-@admin_only
 def edit_post(post_id):
     post = BlogPost.query.get(post_id)
     edit_form = CreatePostForm(

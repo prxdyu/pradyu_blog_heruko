@@ -27,7 +27,9 @@
         <hr>
 
         <div class="clearfix">
+          {% if current_user.id==post.author_id: %}
           <a class="btn btn-primary float-right" href="{{url_for('edit_post', post_id=post.id)}}">Edit Post</a>
+          {% endif %}
         </div>
 
 
@@ -63,12 +65,15 @@
                     <ul class="commentList">
                       {% for comment in post.comments: %}
                         <li>
+                            <div class="commenter">
+                              <span style="text-align:center;"class="date sub-text">{{comment.commenter.name}}</span> &nbsp;
+                            </div>
                             <div class="commenterImage">
-                                 <img src="{{ comment.commenter.email | gravatar }}"/>&nbsp;&nbsp;
+                                 <img src="{{ comment.commenter.email | gravatar }}">
                             </div>
                             <div class="commentText">
                                 {{comment.text|safe}}
-                                <span class="date sub-text">{{comment.commenter.name}}</span>
+
 
                             </div>
                         </li>

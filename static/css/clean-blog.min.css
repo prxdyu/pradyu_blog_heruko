@@ -38,7 +38,9 @@
    height: 30px;
    background-size: 100% 100%;
 }
+.commentText{
 
+}
 .commentBox {
     padding:10px;
     border-top:1px dotted #bbb;
@@ -79,7 +81,7 @@
     border-radius:50%;
 }
 .commentText p {
-    margin:0;
+    margin-left: :20px;
 }
 .sub-text {
     color:#aaa;
