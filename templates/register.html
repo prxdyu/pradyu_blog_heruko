@@ -22,6 +22,36 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+              <ul class=flashes>
+                {% for message in messages %}
+                <p class="flash_msg" style="text-align:center; color:red; font-size:20px;">{{message}}</p>
+                {% endfor %}
+            </ul>
+          {% endif %}
+         {% endwith %}
+          {% if form.email.errors or form.password.errors or form.name.errors :%}
+            <ul class="errors">
+                {% if form.email.errors %}
+                    {% for error in form.email.errors: %}
+                        <p class="flash_msg" style="text-align:center; color:red; font-size:20px;">{{error}}</p>
+                    {% endfor %}
+                {% endif %}
+
+                 {% if form.name.errors or form.password.errors %}
+                    {% for error in form.name.errors: %}
+                        <p class="flash_msg" style="text-align:center; color:red; font-size:20px;">Don't leave any fields empty </p>
+                    {% endfor %}
+                    {% for error in form.password.errors: %}
+                        <p class="flash_msg" style="text-align:center; color:red; font-size:20px;">Don't leave any fields empty </p>
+                    {% endfor %}
+                 {% endif %}
+
+
+          {% endif %}
+
+
 
        {{ wtf.quick_form(form, novalidate=True, button_map={"submit": "primary"}) }}
 
