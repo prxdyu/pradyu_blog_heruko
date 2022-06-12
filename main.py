@@ -20,7 +20,7 @@ flag=True
 generated_otp=""
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
+app.config['SECRET_KEY'] =  os.environ.get("SECRET_KEY")
 ckeditor = CKEditor(app)
 Bootstrap(app)
 loginmanager=LoginManager()
@@ -91,11 +91,12 @@ def get_all_posts():
     return render_template("index.html", all_posts=posts)
 
 
+
 @app.route('/register',methods=['GET','POST'])
 def register():
     form=RegisterForm()
     if request.method=="POST":
-        if form.validate_on_submit:
+        if form.validate_on_submit():
             hashed_salted_password=generate_password_hash(form.password.data,
                 method='pbkdf2:sha256',
                 salt_length=8)
@@ -107,14 +108,25 @@ def register():
             user_info["email"]=email
             user_info["password"]=password
 
-            #otp_generated=generate_otp()
-            # entered_otp=request.form.get("otp")
-            return redirect(url_for('otp_authentication'))
+            # accessing the user objects
+            users = User.query.all()
+            # creating  a list to store all registered emails
+            registered_emails = []
+            # storing registered emails in the above empty list
+            for user in users:
+                registered_emails.append(user.email)
+
+            #checking if the user entered email is already in registered emails list
+            if form.email.data in registered_emails:
+                flash("This email id is already registered")
+            else:
+                return redirect(url_for('otp_authentication'))
+
+
     return render_template("register.html",form=form)
 
 @app.route('/otp',methods=['GET','POST'])
 def otp_authentication():
-    # if request.method!='POST':
     form = OtpForm()
 
     while(True):
@@ -129,8 +141,6 @@ def otp_authentication():
 
 
     if request.method=="GET":
-        #print(generated_otp)
-        # print(user_info["email"])
         send_otp(user_info["email"], generated_otp)
     elif request.method=="POST":
         print("during post the value of the generated otp is",generated_otp)
