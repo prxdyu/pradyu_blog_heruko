@@ -3,7 +3,8 @@ import smtplib
 from smtplib import *
 
 my_mail = "pradyublog@gmail.com"
-my_password = "sivajivaailajelabi"
+my_password = "guwafcljmrgtpymu"
+# sivajivaailajelabi
 
 #function for generating random otp
 def generate_otp():
@@ -33,3 +34,4 @@ def send_email(name, email, phone, message,):
         connection.starttls()
         connection.login(my_mail,my_password)
         connection.sendmail(my_mail, my_mail, email_message)
+
