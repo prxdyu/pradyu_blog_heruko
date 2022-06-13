@@ -3,7 +3,7 @@ import smtplib
 from smtplib import *
 
 my_mail = "pradyublog@gmail.com"
-my_password = guwafcljmrgtpymu
+my_password = "guwafcljmrgtpymu"
 # sivajivaailajelabi
 
 #function for generating random otp
